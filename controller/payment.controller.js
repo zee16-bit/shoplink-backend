@@ -7,10 +7,9 @@ require("dotenv").config()
 const intialize = async(req,res)=>{
     try{
         const {email,amount}= req.body
-        console.log(req.body)
         const response = await axios.post(
             "https://api.paystack.co/transaction/initialize",
-            {email,amount: amount*100},
+            {email,amount: amount*100,callback_url:"http://localhost:5173/success"},
             {
                 headers: {
                     Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
